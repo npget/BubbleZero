@@ -1,0 +1,108 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 6, 2014, 12:14:35 PM
+    Author     : npget
+*/
+
+
+
+html,body{height: 100%;}
+body{min-height: 100%;width: 100%;}
+
+
+#menualto{
+
+padding:0.81em ;
+margin :0% 0% 0% -2%;
+width:100%;
+position: fixed;
+top:0;
+z-index:1002;
+clear: both;
+height: auto;
+
+}
+
+
+
+#menualto a{
+
+cursor:pointer;padding:0.7%;margin:-0.50% 0% 0% 0.8%; }
+
+.npgetdiv{
+ 
+    margin:5%  -0.9%  0%  -0.2% ;width: 99%;height:950px;float:left;position: relative;
+} 
+    
+  /*
+    #menualto a{padding:0.5em; background-color:green; color:white;font-size:1.2em; border-radius:10%;float:left;}
+ */
+#AdvArt
+{ overflow-y:scroll;height:450px;display: block;
+}
+#AdvArt div{ opacity:1;}
+
+iframe{width:100%;height: 100%;margin-top:6%;border: 0;}
+
+
+#scorrisettore{padding:0% 20% 0% 0%;
+position: relative;width:10%;}
+#Lingue{float:right;width: 10%; }
+
+
+
+#slater0  {min-height: 100%;  position: relative;}
+#slater{padding:0; min-height: 100%; position:relative;}
+
+   
+#slater1{padding:0;min-height: 100%;position: relative;}
+#slater2{padding:0;min-height: 100%;position: relative;}
+#slater3{padding:0;min-height: 100%;position: relative;}
+
+
+#CercaFacile{padding:0; position: relative;min-height: 100%;
+    background-color:green;width: 100%;height: 100%; float: left;}
+#CercaFacileFormone{padding:0;margin:5% 10%  0%  0% ; position: relative;width: 100%;float:left;}
+
+#CercaFacile div{position:relative;}
+#query{margin: 1% 2% 2% 0% ;padding:0.18em;font-size:1.4em;}
+#StarLoad{position:relative;}
+    
+ 
+
+       
+ul.dropdown                         { z-index:10;position: relative; }
+ul.dropdown li                      {padding:1%; font-weight: bold; float: left; zoom: 1; }
+ul.dropdown a:hover		    {}
+ul.dropdown a:active                {}
+ul.dropdown li a                    { display: block;  
+	 								   }
+ul.dropdown li:last-child a         { border-right: none; } /* Doesn't work in IE */
+ul.dropdown li.hover,
+ul.dropdown li:hover                {  position: relative; }
+ul.dropdown li.hover a              {  }
+
+
+/* 
+	LEVEL TWO
+*/
+ul.dropdown ul 	{ width: 220px; visibility: hidden; position: absolute; top: 100%; left: 0; }
+ul.dropdown ul li 					{ font-weight: normal; 
+									 float: none; }
+									  
+                                    /* IE 6 & 7 Needs Inline Block */
+ul.dropdown ul li a					{ border-right: none; width: 100%; display: inline-block; } 
+
+/* 
+	LEVEL THREE
+*/
+ul.dropdown ul ul 					{ left: 100%; top: 0; }
+ul.dropdown li:hover > ul 			{ visibility: visible; }
+
+div.lastcategorie {
+    background-repeat:no-repeat;
+    width:20%;float:right;position:relative;}
