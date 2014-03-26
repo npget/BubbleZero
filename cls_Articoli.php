@@ -2,6 +2,7 @@
 namespace general;
 
 require_once __DIR__.'/Cls_impostazioni.php';
+require_once __DIR__.'/cls_utenti.php';
 require_once  __DIR__."/cls_Funk.php";
 
 class ArtiColi{
@@ -181,6 +182,10 @@ public function MiniPrintArt($idutente){
 $root= new impostazioni();
 $rootn= $root->RootDir();
 $rg=$root->RootGlobal();
+ $client=new Client();
+
+
+
 $pattarray="/[ ]/";
 $o="";
 
@@ -203,14 +208,21 @@ $rese=connx()->query($sqlimg);
 $maxe= mysqli_num_rows($rese);
 while($vale=mysqli_fetch_array($rese)){
 extract($vale);
-//ECHO imgpublic($idutentepath);
+
+
+
 $paththumb=$rootn."_nova_img/".$id_utenteint."/publicimgcatalog/thumb150x150/nocut".$pathimg;
 $patht250=$rootn."_nova_img/".$id_utenteint."/publicimgcatalog/thumb250x250/".$pathimg;
 $pth=$rootn."_nova_img/".$id_utenteint."/publicimgcatalog/thumb/".$pathimg;
 $refurl=$rg.$nomeaziendale.'/'.preg_replace($pattarray,'-',$name).'.'.$terzacateforia_ed.'.'.$serial;
-$o.="<div id='' style='float:left' ><input type='hidden' id='$serial'  ><a href='$refurl'>$nomeaziendale</a>||<a href='$refurl'>$name</a>$serial";
-$o.="<img src='$pth'>";
-$o.="<p>".$datainsert."</p></div>";
+$o.="<div id='' class='npgetArticoli ui-state-default ui-corner-all'  >"
+        . "<input type='hidden' id='$serial'  >"
+          . ""
+.$client->ClientTrovaImg($id_utenteint)
+        ."<em><a href='$refurl'>$name</a>$serial</em><br>"
+        . "";
+$o.="<a href='$refurl'><img class='npgetartimg'  src='$pth'></a>";
+$o.="<p>Pubuiblicato".$datainsert."</p></div>";
 }
 }
 $o.=$o;

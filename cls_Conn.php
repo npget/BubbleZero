@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__."/Cls_impostazioni.php";
 
 function connx(){
 $t=new Impo_root();

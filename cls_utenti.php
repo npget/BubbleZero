@@ -1,7 +1,7 @@
 <?php
 namespace  general;
 
-include_once __DIR__.'/cls_Conn.php';
+require_once __DIR__.'/cls_Conn.php';
 
 class Client{
     
@@ -33,6 +33,30 @@ return $val;
 
      }
         
+     public function ClientTrovaImg($idoperatore){
+    	$sql="SELECT * from  webpubblic  
+                            where   webpubblic.id_exutente=$idoperatore
+
+			order by id_exutente  ;";
+			
+			$res=connx()->query($sql);
+			
+		$id1=0;
+		
+		while($val=mysqli_fetch_array($res)){
+			extract($val);
+$url="<img src='http://".$_SERVER['HTTP_HOST']."/n/_nova_img/".$id_exutente."/imgutenza/_s1_".$weblogo."' class='npgetloghioperatori'> ";
+	$id1++;     
+     }
+     return $url;
+}
+     
+}
+
+if(isset($_REQUEST['d'])){
+    $o=new Client();
+    echo $o->ClientTrovaImg($_REQUEST['d']);
+    
 }
 ?>
 

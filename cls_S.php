@@ -545,8 +545,13 @@ $('#slater').html(sl);
 sl1=\"http://$_SERVER[HTTP_HOST]/n/_function/cls_Vetrine.php?id=$idOne&tag=\";
 $('#slater1').load(sl1);
 
-sl2=\"<iframe src='http://$_SERVER[HTTP_HOST]/n/_function/cls_Articoli.php?idpax=on&id=$idOne'></iframe>\";
-$('#slater2').html(sl2);
+//sl2=\"<iframe src='http://$_SERVER[HTTP_HOST]/n/_function/cls_Articoli.php?idpax=on&id=$idOne'></iframe>\";
+//sl2='http://$_SERVER[HTTP_HOST]/n/_function/cls_Articoli.php?idpax=on&id=$idOne';
+sl2='http://$_SERVER[HTTP_HOST]/n/_function/cls_Articoli.php?idpax=on';
+$('#slater2').load(sl2);
+
+//$('#slater3').load('http://$_SERVER[HTTP_HOST]/n/_function/cls_utenti.php?d=$idOne');
+
 
 
 

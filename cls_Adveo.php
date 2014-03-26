@@ -14,7 +14,7 @@ Class ViewArt{
 
    
    public function __webViewX($q){
-   
+  
       $sql="SELECT * from `ADVEOPRODUCT` ,`TABLE 1`  where
        ADVEOPRODUCT.CodiceSpicers ='$q'  and `TABLE 1`.`COL 4`='$q'    ";
       $r=connxAdveo()->query($sql);
