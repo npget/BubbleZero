@@ -32,6 +32,15 @@ return $val;
 	 }
 
      }
+     
+     public function ClientImpostazioniVarie($id){
+           $sql="SELECT * FROM utenti,webpubblic 
+		where utenti.IDUtente=$id  AND  webpubblic.id_exutente='$id'   order by IDUtente ";
+    $res=connx()->query($sql);
+while($val=mysqli_fetch_assoc($res)){
+return $val;
+	 }  
+     }
         
      public function ClientTrovaImg($idoperatore){
     	$sql="SELECT * from  webpubblic  
@@ -52,6 +61,8 @@ $url="<img src='http://".$_SERVER['HTTP_HOST']."/n/_nova_img/".$id_exutente."/im
 }
      
 }
+
+
 
 if(isset($_REQUEST['d'])){
     $o=new Client();

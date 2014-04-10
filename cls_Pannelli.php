@@ -14,10 +14,10 @@ public function __construct(){}
 
 
 public function Uploadform(){
-    
+ //<script type='text/javascript' src='http://npget/n/js/jquery-1.8.3.js'></script>
+ // <script type='text/javascript' src='/n/js/jquery-ui-1.9.2.custom.js'></script>
+   
 $o="
-<script type='text/javascript' src='http://npget/n/js/jquery-1.8.3.js'></script>
-  <script type='text/javascript' src='/n/js/jquery-ui-1.9.2.custom.js'></script>
 <form id='UpLoad014' method='POST' enctype='multipart/form-data' multiple='multiple' >
 <input  type='file' name='up104[]'  multiple='multiple' 
 onChange='PostIt($(this));'  accept='image/jpeg,image/png,image/gif' id='upfile014'>

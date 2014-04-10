@@ -2,7 +2,7 @@
 namespace general;
 error_reporting(E_WARNING);
 require_once __DIR__.('/Cls_impostazioni.php');
-
+require_once __DIR__.('/cls_utenti.php');
 
 class Vetrina{
 
@@ -14,7 +14,32 @@ class Vetrina{
      return    $this->GetTagName=$GetTagName;
         
     }
+
     
+public function SearchAlbumAll(){
+  
+$sql="SELECT * from sliderid   order by idslider Desc Limit 0,300 ";
+$msgtag="Trova tutte le slide ";
+$tag=null;
+
+$delta2=connx()->query($sql);
+$row=mysqli_num_rows($delta2);
+$out="<h3>$msgtag-Trovati n($row) </h3>";
+
+
+
+
+
+while($oneresult=mysqli_fetch_assoc($delta2)){
+
+$out.=$this->SearchAlbumSingleOne($oneresult['idslider'],$tag,$oneresult['titoloslider'],$oneresult['idsli_exidutente']);
+
+}
+return $out;
+}
+
+
+
 
 function SearchAlbumSingle($tag,$id){
 
@@ -46,6 +71,8 @@ return $out;
 
 function SearchAlbumSingleOne($idslider,$tag,$titolo,$id){
 $root=new impostazioni();    
+  $client=new Client();
+  
 $pattern="( )";
 
 $urlslider="http://".$_SERVER['HTTP_HOST'] ."/e".$idslider.".".$id.".".preg_replace($pattern, "-", utf8_decode($titolo));
@@ -68,7 +95,7 @@ $miniurl=$root->RootDir().'space_img/'.str_replace($b,'',$pathimgslide);
 $minithumb=$miniurl."thumb_xyw".$b;
 
 $out.="<li style='list-style:none;float:left;padding:3%;' class='ui-widget-content'>
-<a class=\"thumb ui-state-default\" style='text-decoration:none;' href=\"$urlslider\" target='_blank' >
+".$client->ClientTrovaImg($id)."<a class=\"thumb ui-state-default\" style='text-decoration:none;' href=\"$urlslider\" target='_blank' >
 ".utf8_decode($titolo)."<br><center><img src=\"$minithumb\" alt=\"$idimg_slider\"  />
 </center>
 </a>
@@ -552,8 +579,7 @@ $urlimg=$root->RootDir().'_nova_img/'.$idex_rifutente.'/imgcategorie/_s_'.$imgca
  
       $ut=$root->RootGlobal().$this->TrovaNamebyid($idex_rifutente).'/'.preg_replace("/[^0-9a-zA-Z]/","-",$Categoria).'.'.$ID_categoria;
 	?>
-<div class='lastcategorie'
-     style="background-image:('');">		  
+<div class='lastcategorie' style="');">		  
 <?PHP
 $mx=mysqli_num_rows($max);
 if($mx > 0){
@@ -795,7 +821,11 @@ if($_REQUEST['id']!=""){
     }
 
 
-    
+    if ($_REQUEST['SearchAlbumAll']=='on'){
+     
+        $out=new Vetrina();
+      echo   $out->SearchAlbumAll();
+    }
 
 
 ?>

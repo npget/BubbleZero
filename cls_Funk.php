@@ -7,24 +7,21 @@ public $size;
 function __construct(){}
 
 
-public function OverlayClose($contenuto){
+public function OverlayClose($contenuto,$off){
+$html="<div class='ui-overlay' id='npgetoveraly' STYLE='height:100%;Z-INDEX:99'>
+<div class='ui-widget-overlay' STYLE='position:fixed;top:-15%; height:115%;Z-INDEX:99'></div>
+<div style=\"position: fixed; width:80%;left: 5%; top: 1%; padding: 20px;z-index:999;font-size:1.7em;\" class=\"ui-widget ui-widget-content ui-corner-all\">
+ <span  class='bottoni ui-state-highlight ui-corner-all' >Fine</span><div class=\"ui-dialog-content ui-widget-content\" style=\"background: none; border: 0;\">
+".$contenuto."</div></div></div><script>$('.bottoni').click(function(){
+        $('#npgetoveraly').fadeOut(0);
+    }); </script>";
+if($off != null){
+   
 
-    ?>
-<div class='ui-overlay'  STYLE='height:100%;Z-INDEX:99'>
-<div class='ui-widget-overlay' STYLE='position:fixed;top:-15%; height:115%;Z-INDEX:99'>
-    
-</div>
-
-<div style="position: fixed; width:80%;left: 5%; top: 1%; padding: 20px;z-index:999;font-size:1.7em;" class="ui-widget ui-widget-content ui-corner-all">
- <span  class='bottoni ui-state-highlight ui-corner-all' >Fine</span><div class=" ui-dialog-content ui-widget-content" style="background: none; border: 0;">
-						
-				<?php print_r( $contenuto );?>
-					
-				</div>
-			</div>
-    </div>
-		
-		<?}
+    $html.=$off;
+}
+		return $html;
+		}
 
 
 

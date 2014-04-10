@@ -28,8 +28,11 @@ height: auto;
 #menualto a{
 cursor:pointer;padding:0.7%;margin:-0.50% 0% 0% 0.8%; }
 
+
+
 .npgetArticoli{
-    width: 40%;height: 260px; max-height: 100%;padding:1em 1em 1em 1em;
+    width: 38%;height: 260px; 
+    max-height: 100%;padding:1em 1em 1em 1em;
     margin: 1em 1em 1em 1em;float :left;
 }
 .npgetloghioperatori {width: 10%; border-radius: 50%;}
@@ -41,7 +44,7 @@ cursor:pointer;padding:0.7%;margin:-0.50% 0% 0% 0.8%; }
 .npgetArticoli em {}
 
 .npgetdiv{
- margin:7%  -0.9%  0%  -0.2% ;width: 99%;height:950px;float:left;position: relative;
+ margin:7%  -0.9%  0%  -0.2% ;width: 99%;height:auto;float:left;position: relative;
 }
  
     
@@ -54,20 +57,24 @@ cursor:pointer;padding:0.7%;margin:-0.50% 0% 0% 0.8%; }
 #AdvArt div{ opacity:1;}
 
 
-iframe{width:100%;height: 100%;margin-top:6%;border: 0;}
+iframe{width:100%;height:790px;margin-top:6%;border: 0;}
+
+#vocimenu{width: 60%;float:left;margin-left: 0.4%;}
+
+#scorrisettore{position: relative;width:10%;margin:0% 0 0 75%}
+#Lingue{
+    width: 10%;float:right;position:absolute;}
 
 
-#scorrisettore{padding:0% 20% 0% 0%;
-position: relative;width:10%;}
-#Lingue{float:right;width: 10%; }
 
+#MAPSPrint  {min-height: 100%;  position: relative;}
+#WhoPrint{padding:0; min-height: 100%; position:relative;overflow-y: scroll;}
+#PrintGallery{padding:0;min-height: 100%;position: relative;overflow-y: scroll;}
+#PrintGallery ul{position:relative;height:auto;}
+#PrintGallery ul li{margin:4%;height: 5%;width: 30%;}
 
-
-#slater0  {min-height: 100%;  position: relative;}
-#slater{padding:0; min-height: 100%; position:relative;}
-#slater1{padding:0;min-height: 100%;position: relative;}
-#slater2{padding:0;min-height: 100%;position: relative;}
-#slater3{padding:0;min-height: 100%;position: relative;}
+#PrintProdotti{width: 89%;padding:5%;min-height: 100%;position: relative;overflow-y: scroll;}
+#MarketPrint{padding:0;min-height: 100%;position: relative;overflow-y: scroll;}
 
 
 #CercaFacile{padding:0; position: relative;min-height: 100%;

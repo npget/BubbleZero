@@ -188,10 +188,14 @@ z-index:3;
 
 
 /* HEADER TEXT */
-#headertxt { width:100%;clear:both;margin:35% 0% 0% 0% ;position:absolute; } 
-#firstline { color: rgb(255, 255, 255);
-font-size: 2.8em;
-font-family:Lucida Sans Unicode;
+#headertxt { width:100%;clear:both;
+             margin:15% 0% 0% 0% ;position:absolute; } 
+#firstline { 
+    opacity:0.8;
+color: rgb(255, 255, 255);
+font-size: 2.1em;
+font-family: cursive;
+
 padding: 0.4em  0.3em  0.3em 2.4em;
 float: right;
 display: block;
@@ -203,23 +207,29 @@ letter-spacing:0.2em;
 }
 #firstline:hover{text-decoration:underline;}
 #secondline { 
-	padding: 0.4em  0.3em  0.3em 2.4em;
--webkit-border-top-left-radius: 16px;
--webkit-border-bottom-left-radius: 16px;
+    opacity:0.6;
+padding: 0.4em  0.3em  0.3em 2.4em;
+-webkit-border-top-left-radius: 16%;
+-webkit-border-bottom-left-radius: 16%;
 background-color: #fff;
 color: orange;
-text-decoration:none; font-size:2.2em; padding:0 13px 10px; float:right;
+text-decoration:none; 
+font-size:1.2em;
+float:right;
 display:block; clear:both; }
 #secondline:hover {
 text-decoration:underline;
 }
 
-.pictured{opacity:0.8;
+.pictured{
+opacity:0.9;
 	-webkit-border-bottom-left-radius: 1.6%;
 background-color:rgb(51, 118, 204); color:#FFF; font-size:1.9em;
 padding:0.9% 3%; text-transform:uppercase; float:right; display:block; clear:both; margin-top:0px; }
 .pictured a { 
-font-size:1.7em; font-style:normal; letter-spacing:0; text-transform:none; color:#FFF; text-decoration:none; }
+font-size:1.7em; font-style:normal; 
+letter-spacing:0; text-transform:none; color:#FFF; 
+text-decoration:none; }
 .pictured a:hover {
 
 
@@ -274,13 +284,10 @@ padding-left: 30%;
 
 	<div id="headertxt">
 		
-			<span id="firstline" ></span>
-			<a href="#" id="secondline"></a>
-		
-		<p class="pictured" id='pictured'>
-			
-			<a href="#" id="pictureduri"></a>
-		</p>
+<span id="firstline" ></span>
+<a href="#" id="secondline"></a>
+<p class="pictured" id='pictured'>
+<a href="#" id="pictureduri"></a></p>
 	</div>
 </div>
 <div style='height:159px;'><hr></div>

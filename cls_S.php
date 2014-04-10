@@ -230,7 +230,7 @@ public 	function QueryAziende($utente){
 	var id_dalclick =parseFloat(this.id);
 	
 $("#start").fadeIn("fast");
-$("#slater").fadeIn("fast").load("lateoperator.php?dettaglio=" + id_dalclick+"&idl=<?php echo $_REQUEST['idl'];?>" );
+$("#WhoPrint").fadeIn("fast").load("lateoperator.php?dettaglio=" + id_dalclick+"&idl=<?php echo $_REQUEST['idl'];?>" );
 	});
 	
 
@@ -290,14 +290,23 @@ return $out;
 }
 
 public function FastHtml(){
+    
+ $client=new  Client();
+ $root= new impostazioni();   
+ $IdOne=$root->IdOne();
+ $tuttoclient=$client->ClientImpostazioniVarie($IdOne);
+    
+$rootn=$root->RootDir();
+
+			
 $lang=new \LANG\Lingue;
-$tx="<title>".$lang->PrintWelcome($_SESSION['idlang']).''.date('d-m-Y').'-'.ucfirst($_SERVER['SERVER_NAME'])."</title>
-<script type=\"text/javascript\" src=\"n/js/jquery-1.8.3.js\"></script>
-<script type=\"text/javascript\" src=\"n/js/jquery-ui-1.9.2.custom.js\"></script>
-<script type=\"text/javascript\" src=\"n/js/select2.js\"></script>
-<link type='text/css' rel=\"stylesheet\" href=\"n/js/select2.css\">
-<link type='text/css' rel=\"stylesheet\" href=\"n/development-bundle/themes/blitzer/jquery.ui.all.css\">
-<link type='text/css' rel=\"stylesheet\" href=\"n/_function/css.css\">
+$tx="<title>".$lang->PrintWelcome($_SESSION['idlang']).'&nbsp;'.date('d-m-Y').'-'.ucfirst($_SERVER['SERVER_NAME'])."</title>
+<script type=\"text/javascript\" src=\"$rootn/js/jquery-1.8.3.js\"></script>
+<script type=\"text/javascript\" src=\"$rootn/js/jquery-ui-1.9.2.custom.js\"></script>
+<script type=\"text/javascript\" src=\"$rootn/js/select2.js\"></script>
+<link type='text/css' rel=\"stylesheet\" href=\"$rootn/js/select2.css\">
+<link type='text/css' rel=\"stylesheet\" href=\"$rootn/development-bundle/themes/".$tuttoclient['webstile']."/jquery.ui.all.css\">
+<link type='text/css' rel=\"stylesheet\" href=\"$rootn/_function/css.css\">
 <script>
 $(document).ready(function(){
 
@@ -309,6 +318,9 @@ $('#selectl2').select2();
 </head>
 <body style=\"background-repeat:no-repeat;background-size:100%;\">";
 return $tx;
+
+//.var_Dump($tuttoclient).var_dump($root->IdOne())
+
 }
 
 
@@ -327,91 +339,6 @@ $array.="{'title': '".utf8_encode($title)."','image':'".nomeserver()."_nova_img/
 }
 
 
-
-public function Menu(){
-
-    
-$lang= new \LANG\Lingue;
-
-    $out="
-<div id='menualto' class='ui-widget-header'  >
-
-<div>
-<a   class='show-slater0 ui-state-default ui-corner-all'>".$lang->MAPSPrint($_SESSION['idlang'])."</a>
-<a   class='show-slater  ui-state-default  ui-corner-all' >".$lang->WhoPrint($_SESSION['idlang'])."</a>
-<a   class='show-slater1 ui-state-default  ui-corner-all' >".$lang->PrintGallery($_SESSION['idlang'])."</a>
-<a   class='show-slater2 ui-state-default  ui-corner-all'   >".$lang->PrintProdotti($_SESSION['idlang'])."</a>
-<a   class='show-slater3 ui-state-default  ui-corner-all'  >".$lang->MarketPrint($_SESSION['idlang'])."</a>
-</div>
- 
-
-<div id='scorrisettore' >".$this->ScorriSettori2()."</div>
-<div id='Lingue' >".$lang->IterLingueSelect($_SESSION['idlang'])."</div>
-
-</div>
-
-
-<div id='slater0' class='npgetdiv '></div>
-<div id='slater' class='npgetdiv' ></div>
-<div id='slater1' class='npgetdiv' ></div>
-<div id='slater2' class='npgetdiv'></div>
-<div id='slater3' class='npgetdiv' ></div>
-";
-    return $out;
-    
-}
-
-
-
-
-public function ScriptFacile(){
-    
-
-
-
-$out="<script>
-
-
-
-function ciaobello(){
-
-
-
-$('.show-slater0').click(function(){
-  	$('html, body').animate({
-    scrollTop: $('html').offset().top
-    }, 1000);})
-
-$('.show-slater').click(function(){
-  	$('html, body').animate({
-    scrollTop: $(\"#slater\").offset().top
-    }, 1000);})
-
-$('.show-slater1').click(function(){
-  	$('html, body').animate({
-    scrollTop: $(\"#slater1\").offset().top
-    }, 1000);})
-
-$('.show-slater2').click(function(){
-  	$('html, body').animate({
-    scrollTop: $(\"#slater2\").offset().top
-    }, 1000);})
-
-	$('.show-slater3').click(function(){
-  	$('html, body').animate({
-    scrollTop: $(\"#slater3\").offset().top
-    }, 1000);})
-
-
-    }
-
-ciaobello();
-</script>";
-
-
-
-return $out;
-}
 
 public function CercaFacile(){
  $out="   
@@ -452,7 +379,7 @@ public function ISNovaproget(){
 	session_start();
 $out="<html xmlns=\"http://www.w3.org/1999/html\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">
     <title>NOVAPROGET | Services</title>
-    <link href=\"http://novaproget.com/favicon.gif\" rel=\"shortcut icon\">
+    <link href=\"http://novaproget.com/n/indicator.gif\" rel=\"shortcut icon\">
     <link href=\"./npget_files/novacss2013.css\" type=\"text/css\" rel=\"stylesheet\">
 
     <meta property=\"og:title\" content=\"NOVAPROGET | Services\">
@@ -484,7 +411,7 @@ $out.="<meta http-equiv='refresh' content=\"5; URL='".urldecode($arr['urlnova'])
 
 sleep(0.2);
 }else{
-$out.= "<script>window.location = \"http://www.novaproget.com/NEWS\";</script>";
+$out.= "<script>window.location = \"http://www.novaproget.com/NEWS/VARI/SOLE-24-HOME\";</script>";
 }
 
 return $out."</body></html>";
@@ -504,19 +431,104 @@ return "<script>setTimeout(function(){window.location.reload(true);},$tempo)</sc
 
 
 
+public function Menu(){
+
+    
+$lang= new \LANG\Lingue;
+
+    $out="
+<div id='menualto' class='ui-widget-header'  >
+
+<div id='vocimenu' >
+<a   class='show-MAPSPrint ui-state-default ui-corner-all'>".$lang->MAPSPrint($_SESSION['idlang'])."</a>
+<a   class='show-WhoPrint  ui-state-default  ui-corner-all' >".$lang->WhoPrint($_SESSION['idlang'])."</a>
+<a   class='show-PrintGallery ui-state-default  ui-corner-all' >".$lang->PrintGallery($_SESSION['idlang'])."</a>
+<a   class='show-PrintProdotti ui-state-default  ui-corner-all'   >".$lang->PrintProdotti($_SESSION['idlang'])."</a>
+<a   class='show-MarketPrint ui-state-default  ui-corner-all'  >".$lang->MarketPrint($_SESSION['idlang'])."</a>
+</div>
+ 
+
+<div id='scorrisettore' >".$this->ScorriSettori2()."</div>
+<div id='Lingue' >".$lang->IterLingueSelect($_SESSION['idlang'])."</div>
+
+</div>
+
+
+<div id='MAPSPrint' class='npgetdiv ui-state-default '></div>
+<div id='WhoPrint' class='npgetdiv' ></div>
+<div id='PrintGallery' class='npgetdiv' ></div>
+<div id='PrintProdotti' class='npgetdiv ui-state-active'></div>
+<div id='MarketPrint' class='npgetdiv' ></div>
+";
+    return $out;
+    
+}
+
+
+
+
+public function ScriptFacile(){
+    
+
+
+
+$out="<script>
+
+
+
+function ciaobello(){
+
+
+
+$('.show-MAPSPrint').click(function(){
+  	$('html, body').animate({
+    scrollTop: $('html').offset().top
+    }, 1000);})
+
+$('.show-WhoPrint').click(function(){
+  	$('html, body').animate({
+    scrollTop: $(\"#WhoPrint\").offset().top
+    }, 1000);})
+
+$('.show-PrintGallery').click(function(){
+  	$('html, body').animate({
+    scrollTop: $(\"#PrintGallery\").offset().top
+    }, 1000);})
+
+$('.show-PrintProdotti').click(function(){
+  	$('html, body').animate({
+    scrollTop: $(\"#PrintProdotti\").offset().top
+    }, 1000);})
+
+	$('.show-MarketPrint').click(function(){
+  	$('html, body').animate({
+    scrollTop: $(\"#MarketPrint\").offset().top
+    }, 1000);})
+
+
+    }
+
+ciaobello();
+</script>";
+
+
+
+return $out;
+}
+
 
 public function OutStileAlto(){
 			
 			$impo=new impostazioni();
-			
-			//reinizializza la sessione lingua 
+
+                        //reinizializza la sessione lingua 
 			$impo->Redirector();
 			
 			//riporta l id degli operatori scelti //
 			$idOne=$impo->IdOne();
 			$root=$impo->RootDir();
 			
-			//riporta l array dei siti per dividere output 
+			//riporta l array dei siti per dividere output rispetto al serverName
 			$sceltadominio=$impo->DecisioneRX();
 
 $vetrine=new \general\Vetrina();
@@ -530,38 +542,39 @@ if($sceltadominio=='localhostx'){
    $out.="<script>
  
 $.get( 'n/_function/sliderini.php?idx=$idOne', function( data ) {
-$('#slater0').append(data);
+$('#MAPSPrint').append(data);
 });
 
 //sl0=\"<iframe src='http://$_SERVER[HTTP_HOST]/n/'></iframe>\";
-//$('#slater0').html(sl0);
+//$('#MAPSPrint').html(sl0);
 
 sl=\"<iframe src='http://$_SERVER[HTTP_HOST]/n/t/'></iframe>\";
-$('#slater').html(sl);
+$('#WhoPrint').html(sl);
 
 
 
 
-sl1=\"http://$_SERVER[HTTP_HOST]/n/_function/cls_Vetrine.php?id=$idOne&tag=\";
-$('#slater1').load(sl1);
+
 
 //sl2=\"<iframe src='http://$_SERVER[HTTP_HOST]/n/_function/cls_Articoli.php?idpax=on&id=$idOne'></iframe>\";
 //sl2='http://$_SERVER[HTTP_HOST]/n/_function/cls_Articoli.php?idpax=on&id=$idOne';
 sl2='http://$_SERVER[HTTP_HOST]/n/_function/cls_Articoli.php?idpax=on';
-$('#slater2').load(sl2);
+$('#PrintProdotti').load(sl2);
 
-//$('#slater3').load('http://$_SERVER[HTTP_HOST]/n/_function/cls_utenti.php?d=$idOne');
-
-
+//$('#MarketPrint').load('http://$_SERVER[HTTP_HOST]/n/_function/cls_utenti.php?d=$idOne');
 
 
+//sl1=\"http://$_SERVER[HTTP_HOST]/n/_function/cls_Vetrine.php?id=$idOne&tag=\";
+//$('#PrintGallery').load(sl1);
 
-// $.get('n/_function/cls_Vetrine.php?v=i&i=$idOne', function( data ) {
-//$('#slater1').html(data);
-//});
-//$.get('n/_function/cls_Vetrine.php?d=debug', function( data ) {
-//$('#slater0').html(data);
-//});
+var slall='http://$_SERVER[HTTP_HOST]/n/_function/cls_Vetrine.php?SearchAlbumAll=on';
+$('#PrintGallery').load(slall);
+
+
+
+$.get('n/_function/cls_Vetrine.php?d=debug', function( data ) {
+$('#MarketPrint').html(data);
+});
 
 
 
@@ -572,28 +585,31 @@ $('#slater2').load(sl2);
 			
 if($sceltadominio=='sprintroma'){
 $out.="<script>
-
-
 $.get( 'n/_function/sliderini.php?idx=$idOne', function( data ) {
-$('#slater0').append(data);
+$('#MAPSPrint').append(data);
 });
 
 sl=\"<iframe src='http://sprint.oscar-net.it/HierarchySearch.aspx?SectionID=167275'></iframe>\";
-$('#slater').append(sl);
+$('#WhoPrint').append(sl);
 
 sl1=\"http://$_SERVER[HTTP_HOST]/n/_function/cls_Vetrine.php?id=$idOne&tag=\";
-$('#slater1').load(sl1);
+$('#PrintGallery').load(sl1);
 
 sl2=\"<iframe src='http://$_SERVER[HTTP_HOST]/n/_function/cls_Articoli.php?idpax=on&id=$idOne'></iframe>\";
-$('#slater2').html(sl2);
+$('#PrintProdotti').html(sl2);
 
-//$.get('n/_function/cls_AdveoArt.php?d=debug', function( data ) {
-//$('#slater1').html(data);
-//});
+$.get('n/_function/cls_AdveoArt.php?d=debug', function( data ) {
+$('#MarketPrint').html(data);
+});
 
-//$.get('n/_function/cls_Vetrine.php?v=i&i=$idOne', function( data ) {
-//$('#slater2').html(data);
-//});
+
+
+sl2='http://$_SERVER[HTTP_HOST]/n/_function/cls_Articoli.php?idpax=on&id=$idOne';
+$('#PrintProdotti').load(sl2);
+
+
+
+
 
 </script>".$this->RefreshScript(100000);
 			}
@@ -602,16 +618,22 @@ $('#slater2').html(sl2);
 if($sceltadominio=='facileroma'){
 $out.=$this->ScorriSettori()."<script>
 $.get( 'n/_function/sliderini.php?idx=$idOne', function( data ) {
-$('#slater0').append(data);
+$('#MAPSPrint').append(data);
 });
 
 $.get('n/_function/cls_Vetrine.php?v=i&i=$idOne', function( data ) {
-$('#slater').html(data);
+$('#WhoPrint').html(data);
 });
 
+
+var slall='http://$_SERVER[HTTP_HOST]/n/_function/cls_Vetrine.php?SearchAlbumAll=on';
+$('#PrintGallery').load(slall);
+
 $.get('n/_function/cls_AdveoArt.php?d=debug', function( data ) {
-$('#slater1').html(data);
+$('#PrintProdotti').html(data);
 });
+
+
 </script>".$this->RefreshScript(100000);
 			}
 			
@@ -622,11 +644,17 @@ $('#slater1').html(data);
 if($sceltadominio=='stilediroma'){
 $out.=$this->ScorriSettori()."<script>
 $.get('n/_function/cls_Vetrine.php?v=i&i=$idOne', function( data ) {
-$('#slater0').html(data);
+$('#MAPSPrint').html(data);
 });
  $.get('n/_function/cls_Vetrine.php?d=debug&q=accio', function( data ) {
-$('#slater').html(data);
+$('#WhoPrint').html(data);
 });
+
+var slall='http://$_SERVER[HTTP_HOST]/n/_function/cls_Vetrine.php?SearchAlbumAll=on';
+$('#PrintGallery').load(slall);
+sl2='http://$_SERVER[HTTP_HOST]/n/_function/cls_Articoli.php?idpax=on';
+$('#PrintProdotti').load(sl2);
+
 </script>".$this->RefreshScript(100000);
 			}
 			
@@ -635,7 +663,7 @@ $('#slater').html(data);
 if($sceltadominio=='novaproget'){
 $out=$this->ISNovaproget()."<script>
 $.get('n/_function/cls_Vetrine.php?v=i&i=$idOne', function( data ) {
-$('#slater0').html(data);
+$('#MAPSPrint').html(data);
 });
 
 

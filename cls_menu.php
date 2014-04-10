@@ -11,6 +11,8 @@ var $Init_Footer;
 
 
 public function __construct() {
+
+    
 }
 
 
@@ -19,7 +21,7 @@ public function __construct() {
 
 public function ListStyle(){
 ?>
-<form method='post' id='selectstile' name='selectstile'>
+<form method='post' id='selectstile'  style='font-size: 0.7em;float: left;position: absolute;margin: -2% 0% 0% 87%' name='selectstile'>
 <select class="ui-state-highlight ui-corner-all " onChange="document.selectstile.submit();" style='font-size:1.4EM;'name='stile' >
 <option class="ui-state-highlight ui-corner-all "><?php print_r($_SESSION['stile']);?>
 <option value='clean'>clean
@@ -71,7 +73,7 @@ $root= new impostazioni();
 <a href='<?php echo  $root->RootDir();?>script/'>Script</a>
 
 
-<?php echo $this->ListStyle();?>
+
 
 <a>
 <?php
@@ -104,6 +106,8 @@ DATABASE:<?php echo $_SESSION['database']; ?>-
 
 
 public function MenuAlto(){
+    $mese=array ("Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre");
+$giorno=array ("Domenica", "Lunedi", "Martedi", "Mercoledi", "Giovedi", "Venerdi","Sabato");
 ?>
 <body class='ui-widget-content'>
 <div id='init' style='position:fixed;z-index:90;width:100%;' class='ui-widget-overlay hidden'>
@@ -129,7 +133,12 @@ public function MenuAlto(){
 <a href="#novaproget" onclick="javascript:window.open('<?php  echo pathnomepub().url_vetrina();?>/home','_blank') ;" class='classout' >OUT</a>
  
 <input type='submit' onclick="window.location.href='<?echo $_SERVER['REQUEST_URI'];?>'" value='!' >
+<?php 
+echo $this->ListStyle();
+echo $giorno[date("w")].'&nbsp;'.date("d").'&nbsp;'.$mese[(date("n")-1)].'&nbsp;'.date("d/m/Y").'&nbsp;H:'.date("H:i");
+?>
 </span>
+
 </div>
 
 <div style='clear:both;'></div>

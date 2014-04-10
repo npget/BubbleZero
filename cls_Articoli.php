@@ -64,8 +64,20 @@ $out.="<tr><td>$serial</td>
         
         }
 
+public function ArtImg($idArt){
+    $root=new impostazioni();    
 
-
+ $tpath="SELECT   pathimg ,idutentepath  FROM  pathimgcatalogo where idex_art='$idArt'  ;";
+$rsu=connx()->query($tpath);
+$rsut=mysqli_fetch_array($rsu);
+$num=mysqli_num_rows($rsu);
+if( $num  >=  0 ){ 
+while($rsut1=mysqli_fetch_array($rsu)){
+$out.="<img src='".$root->RootDir()."_nova_img/".$rsut1[1]."/publicimgcatalog/thumb150x150/".$rsut1[0]."' border='0'></a>";
+}
+return $out;
+}
+}
 
 public function ViewArt(){
 $root=new impostazioni();    
@@ -192,10 +204,10 @@ $o="";
 if($idutente!=null){
 
 $sql="SELECT serial,name,id_utenteint,nomeaziendale,datainsert,terzacateforia_ed  FROM products ,utenti  where
- products.pubblico='PUBBLICO ON'  and products.id_utenteint=$idutente  and  utenti.IDUtente=$idutente   order by  serial  desc limit 0, 50";
+ products.pubblico='PUBBLICO ON'  and products.id_utenteint=$idutente  and  utenti.IDUtente=$idutente   order by  serial  desc limit 0, 25";
 }else{
 $sql="SELECT serial,name,id_utenteint,nomeaziendale,datainsert,terzacateforia_ed  FROM products ,utenti  where
- products.pubblico='PUBBLICO ON'  and products.id_utenteint=utenti.IDUtente  order by  serial  desc limit 0, 50";
+ products.pubblico='PUBBLICO ON'  and products.id_utenteint=utenti.IDUtente  order by  serial  desc limit 0, 25";
 }
 
 $res=connx()->query($sql);
@@ -338,6 +350,15 @@ $sitoaziendale.$telaziendale.$faxaziendale.$emailaziendalepubblica.$orarioaziend
 </td></tr></table>";
 
 return $html;
+
+}
+
+public function ArtBrevebyId($e){
+$sql="SELECT * from products where products.serial ='$e'  ORDER BY  serial   desc LIMIT 1;";
+		$risquery=connx()->query($sql);
+		$valori=mysqli_fetch_array($risquery);
+		extract ($valori);	
+return $valori;
 
 }
 
@@ -487,6 +508,7 @@ $o.="<script type='text/javascript'>
 }
 
 
+ERROR_REPORTING(E_WARNING);
 
 if (isset($_REQUEST['idpax']) !=null){
 
